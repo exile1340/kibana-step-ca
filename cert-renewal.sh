@@ -19,9 +19,9 @@ if step certificate needs-renewal "$CERT_LOCATION"; then
     log "Certificate is expiring soon. Renewing..."
     step ca renew $CERT_LOCATION $KEY_LOCATION --ca-url $CA_URL --root $CA_CERT -f
     log "Certificate renewed."
-    log "Converting certificate to pkcs12 format"
-    step certificate p12 certs/kibana.p12 $CERT_LOCATION $KEY_LOCATION --ca $CA_CERT --no-password --insecure -f
-    log "Successfully converted to pkcs12 format"
+    kibana_pid=${pgrep -f "kibana/bin"}
+    kill -HUP "$pid"
+    echo "Sent SIGHUP to kibana./bin with PID $pid"
 else
     log "Certificate does not need renewal."
 fi

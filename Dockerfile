@@ -15,10 +15,9 @@ COPY certcron /etc/cron.d/certcron
 RUN chmod 0644 /etc/cron.d/certcron
 RUN crontab /etc/cron.d/certcron
 RUN touch /var/log/cron.log
-RUN chown kibana:kibana /var/log/cron.log
-COPY cert-renewal.sh /usr/share/kibana/cert-renewal.sh
-RUN chmod +x /usr/share/kibana/cert-renewal.sh
-RUN chown kibana:kibana /usr/share/kibana/cert-renewal.sh
+COPY cert-renewal.sh /usr/local/bin/cert-renewal.sh
+RUN chmod +x /usr/local/bin/cert-renewal.sh
+
 
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
