@@ -19,9 +19,9 @@ if step certificate needs-renewal "$CERT_LOCATION"; then
     log "Certificate is expiring soon. Renewing..."
     step ca renew $CERT_LOCATION $KEY_LOCATION --ca-url $CA_URL --root $CA_CERT -f
     log "Certificate renewed."
-    kibana_pid=${pgrep -f "kibana/bin"}
-    kill -HUP "$pid"
-    echo "Sent SIGHUP to kibana./bin with PID $pid"
+    kibana_pid=$(pgrep -f "kibana/bin")
+    kill -HUP "$kibana_pid"
+    echo "Sent SIGHUP to kibana/bin with PID $kibana_pid"
 else
     log "Certificate does not need renewal."
 fi
