@@ -1,1 +1,1 @@
-*/5 * * * * su - kibana -c '/usr/share/kibana/cert-renewal.sh >> /var/log/cron.log 2>&1'
+*/5 * * * * su - kibana -c '/usr/local/bin/cert-renewal.sh >> /var/log/cron.log 2>&1'
